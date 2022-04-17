@@ -1,0 +1,35 @@
+<main class="converter">
+    <h2 class="converter__header">Currency converter</h2>
+    <div class="converter__content">
+        <div class="converter__item">
+            <mat-form-field class="converter__input" appearance="fill">
+                <input matInput #input1 type="number" placeholder="Enter amount" [value]="input1.value || outputValue"
+                    (input)="converterHandler(+input1.value, currency1.value, currency2.value); input2.value = ''">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Currency</mat-label>
+                <mat-select #currency1 [ngModel]="selected1"
+                    (ngModelChange)="selectOnChange(currency1.value, currency2.value, input1.value); input2.value = ''">
+                    <mat-option *ngFor="let currency of currencies" [value]="currency">
+                        {{currency}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="converter__item">
+            <mat-form-field class="converter__input" appearance="fill">
+                <input matInput #input2 type="number" placeholder="Enter amount" [value]="input2.value || outputValue"
+                    (input)="converterHandler(+input2.value, currency2.value, currency1.value); input1.value = ''">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Currency</mat-label>
+                <mat-select #currency2 [ngModel]="selected2"
+                    (ngModelChange)="selectOnChange(currency1.value, currency2.value, input2.value); input1.value = ''">
+                    <mat-option *ngFor="let currency of currencies" [value]="currency">
+                        {{currency}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</main>
